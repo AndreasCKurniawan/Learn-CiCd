@@ -1,0 +1,21 @@
+name: Testing Telegram 
+
+on: push
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: send telegram message on push
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          status: ${{ job.status }}
+          message: |
+            ${{ github.actor }} ${{ github.event.action }} issue on ${{ github.repository }}
+            title: ${{ github.event.issue.title }}
+            description: 
+            ${{ github.event.issue.body }}
+            https://github.com/${{ github.repository }}/issues/${{ github.event.issue.number }}
