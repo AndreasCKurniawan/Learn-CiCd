@@ -1,0 +1,4 @@
+deployment:
+tasks:
+  - export DEPLOYPATH=/home/public_html/sobless.my.id
+  - /bin/cp -r * $DEPLOYPATH
